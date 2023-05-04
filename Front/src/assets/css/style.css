@@ -1,0 +1,7 @@
+.nav-link:hover:not(:has(.active)){
+    box-shadow: 0 20px 27px 0 rgba(0,0,0,.05);
+}
+
+#root{
+    display: flex;
+}
