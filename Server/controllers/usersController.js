@@ -1,9 +1,12 @@
 
+const express = require("express");
+const router = express.Router();
 const bcrypt = require("bcrypt");
 const { error } = require('console');
 const usersModel = require("../model/usersModel");
 
 
+//login
 module.exports.login = async(req, res, next) => {
     try{
     const { username, password } = req.body;
@@ -28,6 +31,7 @@ module.exports.login = async(req, res, next) => {
 }
 };
 
+//add user
 module.exports.addUser = async(req, res, next) => {
     try{
     const {name, username, password, grade, role, email, phone, images } = req.body;
@@ -56,6 +60,26 @@ module.exports.addUser = async(req, res, next) => {
     next(ex);
 }
 };
+
+
+//update user
+module.exports.updateUser = async (req, res) => {
+    try {
+      const updateUser = await usersModel.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+      );
+      res.status(200).json(updateUser);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
+
+
+module.exports = router;
+
 
 
 
