@@ -4,12 +4,10 @@ import AddUser from './AddUser'
 
 const ListUsers = () => {
   return (
-    <>
-    <NavBar selected="listusers" />
-    <div>ListUsers</div>
-
-    <AddUser />
-    </>
+    <div className='container-page'>
+      <NavBar selected="listusers" />
+      <div>ListUsers</div>
+    </div>
   )
 }
 

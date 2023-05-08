@@ -1,8 +1,4 @@
-
-const express = require("express");
-const router = express.Router();
 const bcrypt = require("bcrypt");
-const { error } = require('console');
 const usersModel = require("../model/usersModel");
 
 
@@ -17,7 +13,7 @@ module.exports.login = async(req, res, next) => {
         return res.json({ msg: "Incorrect Data! Please check your username and password", status: false});
         
     }
-    user.password == password ? isPasswordValid = true : isPasswordValid = false;
+    const isPasswordValid = await bcrypt.compare(password, user.password);
     if(!isPasswordValid){
         
         return res.json({ msg: "Incorrect Data! Please check your username and password", status: false});
@@ -60,29 +56,4 @@ module.exports.addUser = async(req, res, next) => {
     next(ex);
 }
 };
-
-
-//update user
-module.exports.updateUser = async (req, res) => {
-    try {
-      const updateUser = await usersModel.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true }
-      );
-      res.status(200).json(updateUser);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Server error' });
-    }
-  };
-
-
-module.exports = router;
-
-
-
-
-
-
 

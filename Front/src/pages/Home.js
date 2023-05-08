@@ -12,10 +12,10 @@ const Home = () => {
   },[])
   
   return (
-    <>
+    <div className='container-page'>
       <NavBar selected="home"/>
       <div className="main-content position-relative max-height-vh-100 h-100 border-radius-lg ps ps--active-y">Hello</div>
-    </>
+    </div>
   )
 }
 
