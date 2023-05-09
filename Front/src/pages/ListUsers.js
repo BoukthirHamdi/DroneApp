@@ -1,13 +1,13 @@
 import React from 'react'
 import NavBar from '../comp/NavBar'
-import AddUser from './AddUser'
+import AddUser from '../comp/AddUser'
 
 const ListUsers = () => {
   return (
     <div className='container-page'>
       <NavBar selected="listusers" />
       <div>ListUsers</div>
-      <AddUser />
+      
     </div>
   )
 }
