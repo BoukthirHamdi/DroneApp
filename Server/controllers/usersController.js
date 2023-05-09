@@ -57,3 +57,26 @@ module.exports.addUser = async(req, res, next) => {
 }
 };
 
+module.exports.getUsers = async(req, res, next) => {
+    try{
+        const userData= await usersModel.find({});
+        return res.json({
+            userImage:userData.images,
+            userId:userData.username,
+            userData
+            
+        });
+    }catch(ex){
+        next(ex)
+    }
+}
+
+module.exports.deleteUser = async(req, res, next) => {
+    try{
+        const idUser  = req.body.userID;
+        const userData= await usersModel.deleteOne( { "_id" : idUser } );
+        return res.json({status: true, userData});
+    }catch(ex){
+        next(ex)
+    }
+}
