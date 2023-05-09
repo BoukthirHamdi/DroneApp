@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../comp/NavBar'
+
 import AddUser from './AddUser'
 import { getUsersRoute } from '../utils/APIRoutes';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,6 +8,9 @@ import axios from "axios";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { deleteUserRoute } from '../utils/APIRoutes';
+
+import AddUser from '../comp/AddUser'
+
 
 const ListUsers = () => {
   const [users, setUsers] = useState([]);
@@ -49,6 +53,7 @@ const ListUsers = () => {
   return (
     <div className="container-page">
       <NavBar selected="listusers" />
+
       <div class="card m-4 w-full" style={{height : "fit-content"}}>
         <div class="card-header pb-0 flex justify-between">
           <h6>Users Table</h6>
@@ -134,7 +139,7 @@ const ListUsers = () => {
           </div>
         </div>
       </div>
-      
+     
     </div>
   );
 }

@@ -39,8 +39,11 @@ const AddUser = () => {
   };
 
   return (
-    <div className="container">
-      <h2>Ajouter un utilisateur</h2>
+    <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+      <div class="mb-4">
+        <h3 class="font-weight-bolder text-info text-gradient" style={{textAlign: "center"}}>Add User</h3>
+        <p class="mb-0" style={{textAlign: "center"}}>Enter your Username and Password to sign in</p>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
@@ -124,9 +127,10 @@ const AddUser = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-primary">Ajouter</button>
+        <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Ajouter</button>
       </form>
-    </div>
+    </div>  
+    
   );
 };
 
