@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from '../comp/NavBar'
-import AddUser from './AddUser'
+import AddUser from '../comp/AddUser'
 import UpdateUser from './UpdateUser'
 
 const ListWanted = () => {

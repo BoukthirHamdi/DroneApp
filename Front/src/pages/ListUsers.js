@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from '../comp/NavBar'
 
-import AddUser from './AddUser'
+
 import { getUsersRoute } from '../utils/APIRoutes';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
@@ -9,7 +9,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { deleteUserRoute } from '../utils/APIRoutes';
 
-import AddUser from '../comp/AddUser'
+
 
 
 const ListUsers = () => {
