@@ -13,7 +13,7 @@ module.exports.login = async(req, res, next) => {
         return res.json({ msg: "Incorrect Data! Please check your username and password", status: false});
         
     }
-    const isPasswordValid = password == user.password;
+    const isPasswordValid = await bcrypt.compare(password, user.password);
     if(!isPasswordValid){
         
         return res.json({ msg: "Incorrect Data! Please check your username and password", status: false});
