@@ -7,6 +7,7 @@ const ListUsers = () => {
     <div className='container-page'>
       <NavBar selected="listusers" />
       <div>ListUsers</div>
+      <AddUser />
     </div>
   )
 }
