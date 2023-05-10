@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { adduserRoute } from '../utils/APIRoutes';
 import axios from 'axios';
-
-const AddUser = () => {
+import { RiCloseLine } from "react-icons/ri";
+const imageMimeType = /image\/(png|jpg|jpeg)/i;
+const AddUser = ({setIsOpen}) => {
+  const [file, setFile] = useState(null);
+  const [fileDataURL, setFileDataURL] = useState("");
   const [user, setUser] = useState({
     name: '',
     username: '',
@@ -11,8 +14,44 @@ const AddUser = () => {
     role: '',
     email: '',
     phone: '',
-    images: []
+    images:''
   });
+
+  const imageHandler = (e) => {
+    const file = e.target.files[0];
+    if (!file.type.match(imageMimeType)) {
+      alert("Image mime type is not valid");
+      return;
+    }
+    setFile(file);
+  };
+
+  useEffect(() => {
+    let fileReader,
+      isCancel = false;
+    if (file) {
+      fileReader = new FileReader();
+      fileReader.onload = (e) => {
+        const { result } = e.target;
+        if (result && !isCancel) {
+          setFileDataURL(result);
+          setUser(prevState => {
+            return { ...prevState, images: result }
+          });
+        }
+      };
+      fileReader.readAsDataURL(file);
+    }
+    return () => {
+      isCancel = true;
+      if (fileReader && fileReader.readyState === 1) {
+        fileReader.abort();
+      }
+      
+    };
+    
+  }, [file]);
+
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -20,30 +59,52 @@ const AddUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    
+    console.log(user)
     try {
       const response = await axios.post( adduserRoute, user);
       console.log(response);
-      setUser({
-        name: '',
-        username: '',
-        password: '',
-        grade: '',
-        role: '',
-        email: '',
-        phone: '',
-        images: []
-      });
+      if(response.data.status){
+        setUser({
+          name: '',
+          username: '',
+          password: '',
+          grade: '',
+          role: '',
+          email: '',
+          phone: '',
+          images: ''
+        });
+        window.location.href = '/listusers'
+      }
+      
+      
     } catch (error) {
       console.log(error);
     }
   };
 
+  
+  
+  
+  
+
   return (
-    <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+    <>
+    
+    <div className='darkBG' onClick={() => setIsOpen(false)} />
+
+
+    
+    <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto card py-2 px-3 rounded centered">
       <div class="mb-4">
         <h3 class="font-weight-bolder text-info text-gradient" style={{textAlign: "center"}}>Add User</h3>
-        <p class="mb-0" style={{textAlign: "center"}}>Enter your Username and Password to sign in</p>
+        <p class="mb-0" style={{textAlign: "center"}}>Add user to your data base</p>
       </div>
+      <button className='closeBtn' onClick={() => setIsOpen(false)}>
+            <RiCloseLine style={{ marginBottom: "-3px" }} />
+          </button>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
@@ -93,7 +154,7 @@ const AddUser = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="role">Rôle</label>
+          <label htmlFor="role">Role</label>
           <input
             type="text"
             className="form-control"
@@ -127,10 +188,20 @@ const AddUser = () => {
             required
           />
         </div>
+        <div className="form-group">
+          <label htmlFor="images">Image</label>
+          <input
+           type={"file"}
+            accept="img/png, image/jpeg, image/jpg"
+            onChange={imageHandler}
+            className="form-control"
+            required
+          />
+        </div>
         <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Ajouter</button>
       </form>
     </div>  
-    
+    </>
   );
 };
 

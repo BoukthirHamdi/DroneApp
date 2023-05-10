@@ -31,6 +31,7 @@ module.exports.login = async(req, res, next) => {
 module.exports.addUser = async(req, res, next) => {
     try{
     const {name, username, password, grade, role, email, phone, images } = req.body;
+    console.log(req.body);
     const usernameCheck = await usersModel.findOne({username});
     if(usernameCheck){
         return res.json({ msg: "Username is already taken!", status: false});

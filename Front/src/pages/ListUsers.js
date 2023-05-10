@@ -8,6 +8,7 @@ import axios from "axios";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { deleteUserRoute } from '../utils/APIRoutes';
+import AddUser from '../comp/AddUser';
 
 
 
@@ -15,6 +16,7 @@ import { deleteUserRoute } from '../utils/APIRoutes';
 const ListUsers = () => {
   const [users, setUsers] = useState([]);
   const [userExist, setUserExist] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const [deletePopup, setDeletePopup] = useState(false)
   const [userIdHandler, setUserIdHandler] = useState();
@@ -57,7 +59,7 @@ const ListUsers = () => {
       <div class="card m-4 w-full" style={{height : "fit-content"}}>
         <div class="card-header pb-0 flex justify-between">
           <h6>Users Table</h6>
-          <button class="btn btn-outline-primary btn-sm mb-0">Add User</button>
+          <button class="btn btn-outline-primary btn-sm mb-0" onClick={() => setIsOpen(true)}>Add User</button>
         </div>
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
@@ -89,7 +91,7 @@ const ListUsers = () => {
                       <div class="d-flex px-2 py-1">
                         <div>
                           <img
-                            src="../assets/img/team-2.jpg"
+                            src={user.images}
                             class="avatar avatar-sm me-3"
                             alt="user1"
                           />
@@ -140,6 +142,7 @@ const ListUsers = () => {
         </div>
       </div>
      
+      {isOpen && <AddUser setIsOpen={setIsOpen} />}
     </div>
   );
 }
