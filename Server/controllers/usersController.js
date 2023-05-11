@@ -81,3 +81,27 @@ module.exports.deleteUser = async(req, res, next) => {
         next(ex)
     }
 }
+module.exports.getUser = async(req, res, next)=>{
+    try{
+        const userId = req.params.id;
+        const userDataId = await usersModel.findById(userId);
+        userDataId.password = "undefined from SSL";
+        
+        return res.json({
+            userDataId
+        });
+    }catch(ex){
+        next(ex)
+    }
+}
+
+module.exports.updateUser = async(req, res, next)=>{
+    try{
+        const userId = req.body.userIdEdit
+        const updatedUserData = req.body.user;
+        const userUpdate = await usersModel.updateOne({_id: userId}, {$set: updatedUserData});
+        return res.json({status: true});
+    }catch(ex){
+        next(ex)
+    }
+}

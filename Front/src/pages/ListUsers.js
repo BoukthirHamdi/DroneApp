@@ -9,6 +9,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { deleteUserRoute } from '../utils/APIRoutes';
 import AddUser from '../comp/AddUser';
+import EditUser from '../comp/EditUser';
 
 
 
@@ -17,9 +18,8 @@ const ListUsers = () => {
   const [users, setUsers] = useState([]);
   const [userExist, setUserExist] = useState(false)
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
-  const [deletePopup, setDeletePopup] = useState(false)
-  const [userIdHandler, setUserIdHandler] = useState();
+  const [editIsOpen, setEditIsOpen] = useState(false);
+  const [userEdit, setUserEdit] = useState()
 
   if(localStorage.getItem('drone-admin-user')==null){
     window.location.href = '/login'
@@ -42,7 +42,7 @@ const ListUsers = () => {
     event.preventDefault();
     
     const data = await axios.post(deleteUserRoute, {userID});
-    console.log(data);
+
     if(data.data.status === false){
       console.log(data.msg);
   }
@@ -50,6 +50,12 @@ const ListUsers = () => {
     console.log("user deleted");
     window.location.href = '/listusers'
 }
+  }
+  const handleEdit= (id, event) =>{
+    event.preventDefault();
+    setEditIsOpen(true);
+    setUserEdit(id);
+    
   }
 
   return (
@@ -122,7 +128,7 @@ const ListUsers = () => {
                           </p>
                     </td>
                     <td class="align-middle">
-                    <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</a>
+                    <button class="btn btn-link text-dark px-3 mb-0" onClick={(event)=>handleEdit(user._id, event)}><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Edit</button>
                     </td>
                     <td class="align-middle">
                     <Popup trigger={<a class="btn btn-link pointer text-danger text-gradient px-3 mb-0" ><i class="far fa-trash-alt me-2" aria-hidden="true"></i>Delete</a>} position="bottom center">
@@ -143,6 +149,7 @@ const ListUsers = () => {
       </div>
      
       {isOpen && <AddUser setIsOpen={setIsOpen} />}
+      {editIsOpen && <EditUser setIsOpen={setEditIsOpen} id={userEdit}/>}
     </div>
   );
 }

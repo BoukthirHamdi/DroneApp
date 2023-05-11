@@ -61,7 +61,7 @@ const AddUser = ({setIsOpen}) => {
     e.preventDefault();
     
     
-    console.log(user)
+    
     try {
       const response = await axios.post( adduserRoute, user);
       console.log(response);
