@@ -37,12 +37,13 @@ module.exports.getWanted = async(req, res, next)=>{
 module.exports.addWanted = async(req, res, next) => {
     try{
     const {name, cin, adress, birthday, images,file } = req.body;
-    console.log(req.body);
+    
     const cinCheck = await wantedModel.findOne({cin});
+   
     if(cinCheck){
         return res.json({ msg: "CIN is already taken!", status: false});
     }
-    const user = await wantedModel.create({
+    const wanted = await wantedModel.create({
         name, 
         cin, 
         adress , 
@@ -53,7 +54,7 @@ module.exports.addWanted = async(req, res, next) => {
     return res.json({status: true, wanted});
 }catch(ex) {
     next(ex);
-            }
+    }
 };
 
 //update wanted
