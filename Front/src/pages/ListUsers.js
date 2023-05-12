@@ -51,6 +51,7 @@ const ListUsers = () => {
     window.location.href = '/listusers'
 }
   }
+  
   const handleEdit= (id, event) =>{
     event.preventDefault();
     setEditIsOpen(true);

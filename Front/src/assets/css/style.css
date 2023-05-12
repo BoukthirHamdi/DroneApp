@@ -5,3 +5,7 @@
 .container-page{
     display: flex;
 }
+.imgWanted{
+    width: 124px;
+    height: 124px;
+}

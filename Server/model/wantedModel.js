@@ -32,6 +32,9 @@ const wantedSchema = new mongoose.Schema({
      images:{
          type:Array
      },
+     file:{
+        type:String
+     }
  });
 
  module.exports = mongoose.model("Wanted", wantedSchema);

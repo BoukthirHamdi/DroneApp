@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const usersModel = require("../model/usersModel");
 
 
+
 //login
 module.exports.login = async(req, res, next) => {
     try{
@@ -14,6 +15,7 @@ module.exports.login = async(req, res, next) => {
         
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
+    // isPasswordValid=password==(user.password)
     if(!isPasswordValid){
         
         return res.json({ msg: "Incorrect Data! Please check your username and password", status: false});
@@ -58,6 +60,7 @@ module.exports.addUser = async(req, res, next) => {
 }
 };
 
+//get userssss
 module.exports.getUsers = async(req, res, next) => {
     try{
         const userData= await usersModel.find({});
@@ -72,15 +75,7 @@ module.exports.getUsers = async(req, res, next) => {
     }
 }
 
-module.exports.deleteUser = async(req, res, next) => {
-    try{
-        const idUser  = req.body.userID;
-        const userData= await usersModel.deleteOne( { "_id" : idUser } );
-        return res.json({status: true, userData});
-    }catch(ex){
-        next(ex)
-    }
-}
+//get user
 module.exports.getUser = async(req, res, next)=>{
     try{
         const userId = req.params.id;
@@ -95,6 +90,18 @@ module.exports.getUser = async(req, res, next)=>{
     }
 }
 
+//delete user
+module.exports.deleteUser = async(req, res, next) => {
+    try{
+        const idUser  = req.body.userID;
+        const userData= await usersModel.deleteOne( { "_id" : idUser } );
+        return res.json({status: true, userData});
+    }catch(ex){
+        next(ex)
+    }
+}
+
+//update user
 module.exports.updateUser = async(req, res, next)=>{
     try{
         const userId = req.body.userIdEdit
