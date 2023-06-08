@@ -57,17 +57,12 @@ const ListWanted = () => {
 
   return (
     <div className="container-page">
-      <NavBar selected="listwanted" />
-      <div className="flex gap-4 pt-4 px-4 w-full flex-col">
-        <div class="h-fit w-full pb-0 flex justify-between">
-          <h6>Users Table</h6>
-          <button
-            class="btn btn-outline-primary btn-sm mb-0"
-            onClick={() => setWantedAddIsOpen(true)}
-          >
-            Add Wanted
-          </button>
-        </div>
+      <NavBar  />
+      <div className="mx-auto flex justify-between w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Wanted List</h1>
+            <button class="btn btn-outline-primary btn-sm mb-0" onClick={() => setWantedAddIsOpen(true)}>Add Wanted</button>
+      </div>
+      <div className="mx-auto max-w-7xl py-2 sm:px-6 lg:px-8">
         <div className='flex flex-wrap gap-4'>
         {wanteds.map((wanted) => (
           <div class="col-bg-6" style={{'width' : 'fit-content'}}>
@@ -75,7 +70,7 @@ const ListWanted = () => {
               <div class="card-header bg-4 p-3 text-center">
                 <div class="icon icon-shape imgWanted bg-gradient-primary shadow text-center border-radius-lg">
                   <img
-                    src="https://www.mnp.ca/-/media/foundation/integrations/personnel/2020/12/16/13/57/personnel-image-4483.jpg?h=800&w=600&hash=9D5E5FCBEE00EB562DCD8AC8FDA8433D"
+                    src={wanted.images}
                     className="w-full h-full border-radius-lg"
                   />
                 </div>

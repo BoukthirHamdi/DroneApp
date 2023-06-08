@@ -30,10 +30,13 @@ const wantedSchema = new mongoose.Schema({
            type: Number
          } },
      images:{
-         type:Array
+         type:String
      },
      file:{
         type:String
+     },
+     stars:{
+      type:String
      }
  });
 

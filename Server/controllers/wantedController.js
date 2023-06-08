@@ -36,7 +36,7 @@ module.exports.getWanted = async(req, res, next)=>{
 //add wanted
 module.exports.addWanted = async(req, res, next) => {
     try{
-    const {name, cin, adress, birthday, images,file } = req.body;
+    const {name, cin, adress,stars , birthday, images,file } = req.body;
     
     const cinCheck = await wantedModel.findOne({cin});
    
@@ -45,8 +45,9 @@ module.exports.addWanted = async(req, res, next) => {
     }
     const wanted = await wantedModel.create({
         name, 
-        cin, 
-        adress , 
+        cin,
+        adress ,
+        stars, 
         birthday, 
         images, 
         file

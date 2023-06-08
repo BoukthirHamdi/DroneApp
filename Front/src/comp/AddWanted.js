@@ -10,6 +10,7 @@ const AddWanted = ({setWantedAddIsOpen}) => {
     name: '',
     cin: '',
     adress: '',
+    stars: '',
     birthday: {
         day:'',
         month:'',
@@ -72,6 +73,7 @@ const AddWanted = ({setWantedAddIsOpen}) => {
             name: '',
             cin: '',
             adress: '',
+            stars: '',
             birthday: {
                 day:'',
                 month:'',
@@ -142,6 +144,18 @@ const AddWanted = ({setWantedAddIsOpen}) => {
             id="adress"
             name="adress"
             value={wanted.adress}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Stars</label>
+          <input
+            type="number"
+            className="form-control"
+            id="stars"
+            name="stars"
+            value={wanted.stars}
             onChange={handleChange}
             required
           />

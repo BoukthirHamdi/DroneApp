@@ -61,13 +61,13 @@ const ListUsers = () => {
 
   return (
     <div className="container-page">
-      <NavBar selected="listusers" />
-
-      <div class="card m-4 w-full" style={{height : "fit-content"}}>
-        <div class="card-header pb-0 flex justify-between">
-          <h6>Users Table</h6>
-          <button class="btn btn-outline-primary btn-sm mb-0" onClick={() => setIsOpen(true)}>Add User</button>
-        </div>
+      <NavBar />
+      <div className="mx-auto flex justify-between w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Users List</h1>
+            <button class="btn btn-outline-primary btn-sm mb-0" onClick={() => setIsOpen(true)}>Add User</button>
+      </div>
+      <div className="mx-auto max-w-7xl py-2 sm:px-6 lg:px-8">
+        
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
             <table class="table align-items-center mb-0">
