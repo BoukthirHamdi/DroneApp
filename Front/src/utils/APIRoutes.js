@@ -13,3 +13,4 @@ export const getWantedsRoute = `${host}/api/auth/getWanteds`;
 export const addWantedRoute = `${host}/api/auth/addWanted`;
 export const updateWantedRoute = `${host}/api/auth/updateWanted`;
 export const deleteWantedRoute = `${host}/api/auth/deleteWanted`;
+export const getWantedCinRoute = `${host}/api/auth/getWantedCin`;

@@ -81,3 +81,28 @@ module.exports.deleteWanted = async(req, res, next) => {
     }
 }
 
+//GEt Wanted by CIN 
+
+module.exports.getWantedCin = async (req, res, next) => {
+    try {
+      const wantedCIN = req.params.cin; // Assuming the unique column is called "CIN"
+      const wantedData = await wantedModel.findOne({ cin: wantedCIN }); // Searching for user by CIN
+  
+      if (!wantedData) {
+        // User not found
+        return res.json({
+            userData: undefined
+          });
+      }
+      console.log(wantedData)
+      wantedData.password = 'undefined from SSL';
+  
+      res.json({
+        userData: wantedData
+      });
+      console.log(res.json)
+      return res.json
+    } catch (ex) {
+      next(ex);
+    }
+  };

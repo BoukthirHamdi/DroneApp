@@ -11,12 +11,13 @@ import ListWanted from './pages/ListWanted';
 import Me from './pages/Me';
 import Remote from './pages/Remote';
 import Logout from './comp/Logout';
+import WantedDetection from './utils/WantedDetection';
 function App() {
 
 
   return (
     <>
-    
+    <WantedDetection />
       <BrowserRouter>
         <Routes>
           <Route path='/' exact element={<Home />} />
