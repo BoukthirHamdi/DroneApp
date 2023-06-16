@@ -9,9 +9,10 @@ import ListUsers from './pages/ListUsers';
 import DroneLocation from './pages/DroneLocation';
 import ListWanted from './pages/ListWanted';
 import Me from './pages/Me';
-import Remote from './pages/Remote';
+
 import Logout from './comp/Logout';
 import WantedDetection from './utils/WantedDetection';
+import Reports from './pages/Reports';
 function App() {
 
 
@@ -26,7 +27,8 @@ function App() {
           <Route path='/dronelocation' exact element={<DroneLocation />} />
           <Route path='/listwanted' exact element={<ListWanted />} />
           <Route path='/me' exact element={<Me />} />
-          <Route path='/remote' exact element={<Remote />} />
+          <Route path='/reports' exact element={<Reports />} />
+          
           <Route path='/logout' exact element={<Logout />} />
         </Routes>
       </BrowserRouter>

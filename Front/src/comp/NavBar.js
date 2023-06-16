@@ -7,20 +7,22 @@ import { AiOutlineClose } from 'react-icons/ai'
 
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../assets/img/logo.png'
-
+const user = {};
 const userConnected = JSON.parse(localStorage.getItem('drone-admin-user'));
-
-const user = {
-  name: userConnected.name,
-  email: userConnected.email,
-  imageUrl: userConnected.images,
+if (userConnected){
+  const user = {
+    name: userConnected.name,
+    email: userConnected.email,
+    imageUrl: userConnected.images,
+  };
 }
+
 const navigation = [
   { name: 'Dashboard', href: '/', current: true },
   { name: 'Drone Location', href: '/dronelocation', current: false },
   { name: 'Wanted List', href: '/listwanted', current: false },
   { name: 'Users List', href: '/listusers', current: false },
-  { name: 'Reports', href: '#', current: false },
+  { name: 'Reports', href: '/reports', current: false },
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '/me' },

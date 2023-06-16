@@ -3,6 +3,7 @@ const cors = require("cors")
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes")
 const wantedRoutes = require("./routes/wantedRoutes")
+const reportsRoutes = require("./routes/reportsRoutes")
 
 const bodyParser = require('body-parser');
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
 app.use("/api/auth", userRoutes)
 app.use("/api/auth", wantedRoutes)
+app.use("/api/auth", reportsRoutes)
 
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
