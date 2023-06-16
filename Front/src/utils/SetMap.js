@@ -23,7 +23,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const mapOptions = {
-  zoomControl: false,
+  zoomControl: true,
   streetViewControl: false,
   mapTypeControl: false,
   fullscreenControl: false,
